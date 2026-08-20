@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        body{
+            height:100vh;
+            width:90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("https://images.unsplash.com/photo-1556740714-a8395b3bf30f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .card{
+            width:30%;
+            background-color: whitesmoke;
+            padding:40px;
+            border:none;
+            outline: none;
+            border-radius: 10px;
+            margin-left: 12%;
+        }
+        .card h2{
+            text-align: center;
+            font-weight: bold;
+           font-size: 40px;
+           margin-bottom: 30px;
+        }
+        .input-group label{
+            display:block;
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+        .input-group input{
+            width:100%;
+            border:none;
+            outline:none;
+            border-radius: 10px;
+            height:30px;
+            margin-bottom: 20px;
+            padding:10px;
+            background-color:white;
+        }
+        button{
+            height:55px;
+            width:100%;
+            background-color:blue;
+           color: white;
+            font-size:25px;
+            text-align: center;
+            padding:10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border:none;
+            outline:none;
+            border-radius: 10px;
+        }
+        .success{
+            text-align: center; 
+            font-size: 20px;
+            /* background-color: lightgray; */
+            height:45px;
+            padding:10px;
+            border-radius: 10px;
+            border:none;
+            outline: none;
+          
+        }
+    </style>
+</head>
+<body>
+    
+<div class="card">
+
+<h2>Payment Details</h2>
+
+<form id="paymentForm">
+
+<div class="input-group">
+<label>Full Name</label>
+<input type="text" id="name" placeholder="name" required>
+</div>
+
+<div class="input-group">
+<label>Email</label>
+<input type="email" id="email" placeholder="email" required>
+</div>
+
+<div class="input-group">
+<label>Card Number</label>
+<input
+type="number"
+id="card"
+maxlength="16"
+placeholder="1234 5678 9012 3456"
+required>
+</div>
+
+<div class="row">
+
+<div class="input-group">
+<label>Expiry</label>
+<input type="date"
+id="expiry"
+placeholder="MM/YY"
+maxlength="8"
+required>
+</div>
+
+<div class="input-group">
+<label>CVV</label>
+<input
+type="password"
+id="cvv"
+placeholder="cvv"
+maxlength="3"
+required>
+</div>
+
+</div>
+
+<button onclick=payment() type="submit">
+Pay Now
+</button>
+
+<div class="success" id="successMsg">
+    Please fill the details.
+<!-- ✅ Payment Successful! Thank you for booking with us. -->
+</div> 
+
+</form>
+</div>
+
+
+<script>
+     function payment(){
+        document.getElementById("paymentForm").addEventListener("submit",function(e)
+    {
+        e.preventDefault();
+
+
+
+        let cardno=document.getElementById("card").value;
+    if(cardno.length<16)
+    {
+        alert ("Please enter a valid card number");
+        return;
+    }
+
+
+
+    let expiry=document.getElementById("expiry").value;
+    if(expiry.length<8){
+        alert("Please enter valid details");
+        return;
+    }
+
+
+    let cvv=document.getElementById("cvv").value;
+    if(cvv<3){
+        alert("Enter valid cvv");
+        return;
+    }
+   document.getElementById("successMsg").textContent="✅ Payment Successful! Thank you.";
+    
+    })};
+     
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      
+    /* Reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    
+  
+}
+body{
+    background-image:url(https://media.istockphoto.com/id/139744879/photo/dusk-at-the-poolside-of-a-luxury-hotel.jpg?s=2048x2048&w=is&k=20&c=IcRMvSQNGf6fKD7qaoijqe3YGV8iW5943ivFDIOuNkU=);
+}
+
+/* Full Screen Container */
+.fullcontainer {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+   
+    
+}
+
+/* Background Image */
+.fullcontainer::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("hotel.jpg") center/cover no-repeat;
+    filter: blur(8px);
+    transform: scale(1.1);
+    z-index: -2;
+}
+
+/* Dark Overlay */
+.fullcontainer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: -1;
+}
+
+/* Summary Box */
+.box {
+    width: 420px;
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    padding: 25px;
+    color: #fff;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    /* border: 1px solid rgba(255,255,255,0.2); */
+}
+
+/* Heading */
+.head {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.head h1 {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+/* Table */
+.table {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Each Row */
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 190, 190, 0.2);
+}
+
+.row p {
+    font-size: 17px;
+}
+
+/* Hotel Name */
+#stay {
+    font-weight: 600;
+    color: #ffd700;
+}
+
+/* Total Row */
+.total {
+    margin-top: 10px;
+    border: none;
+    padding-top: 15px;
+}
+
+.total h2 {
+    font-size: 24px;
+    color: #ffd700;
+}
+
+.total p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #00ff88;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .box {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .head h1 {
+        font-size: 24px;
+    }
+
+    .row p,
+    .total p {
+        font-size: 16px;
+    }
+}
+.booking-summary{
+    width:400px;
+    margin:auto;
+    padding:30px;
+    background:rgba(255, 255, 255, 0.2);
+    backdrop-filter:blur(10px); 
+    border-radius:15px;
+    color:white;
+}
+
+.booking-summary h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 0;
+    /* border-bottom:1px solid white; */
+}
+
+.total{
+    font-size:22px;
+    font-weight:bold;
+    color:#00ff88;
+    border-bottom:none;
+}
+#but{
+    line-height:50px;
+    font-size: 2rem;
+    background-color: #ffd700;
+}
+
+       
+           
+        
+    </style>
+</head>
+<body>
+    <div class="fullcontainer">
+        <div class="summary">
+        <div class="box">
+            <div class="head">
+                <h1>Booking Summary</h1>
+            </div>
+            <div class="table">
+           <div class="hotel row">
+             <p>Hotel</p>
+            <p id="stay"></p>
+           </div>
+           <div class="room row">
+             <p>Room</p>
+             <p id="roomType"></p>
+           </div>
+            <div class="checkin row">
+                <p>Check-In</p>
+                <p id="checkIn"></p>
+            </div>
+            <div class="checkout row">
+                <p>Check-Out</p>
+               <p id="checkOut"></p>
+            </div>
+           <div class="guests row">
+             <p>Guests</p>
+             <p id="guestCount"></p>
+           </div>
+           <div class="total row">
+            <h2 >Total</h2>
+            <p id="price"></p>
+           </div>
+           <button onclick="payment()" type="click" id="but">Next</button>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+   
+
+    document.getElementById("stay").innerHTML =
+        localStorage.getItem("hotel");
+
+    document.getElementById("roomType").innerHTML =
+        localStorage.getItem("room");
+
+    document.getElementById("checkIn").innerHTML =
+       localStorage.getItem("checkin");
+
+    document.getElementById("checkOut").innerHTML =
+        localStorage.getItem("checkout");
+
+    document.getElementById("guestCount").innerHTML =
+       localStorage.getItem("guests");
+
+    document.getElementById("price").innerHTML =
+        localStorage.getItem("total");
+   
+    
+function payment(){
+    document.querySelector(".box").addEventListener("click",function(e){
+        e.preventDefault();
+        window.location.href="payment.html";
+
+    })
+}
+
+    
+</script>
+    </div>
+   
+</body>
+</html>
